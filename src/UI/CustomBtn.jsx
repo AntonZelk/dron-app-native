@@ -10,6 +10,7 @@ export const CustomBtn = ({ name }) => {
   const dispatch = useDispatch();
 
   const drons = useSelector((state) => state.drons.drons);
+
   const selectedBtn = useSelector(
     (state) => state.drons.selectedDrons.selectedBtn
   );

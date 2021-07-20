@@ -26,7 +26,6 @@ function* sagaDronsWorker() {
     yield put(hideLoader());
   } catch (e) {
     yield put(showError());
-    yield put(hideLoader());
   }
 }
 
