@@ -7,7 +7,13 @@ import Images from '../UI/Imajes';
 export const Card = ({ dron }) => {
   return (
     <View style={styles.container}>
-      <Image source={Images.drons[dron.id - 1]} />
+      <View style={styles.img}>
+        <Image
+          source={Images.drons[dron.id - 1]}
+          style={dron.id === 2 ? styles.image1 : styles.image}
+        />
+      </View>
+
       <View style={styles.textBlock}>
         <CustomText style={styles.name}>{dron.name}</CustomText>
         <View style={styles.textInfo}>
@@ -38,14 +44,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   name: {
-    fontWeight: 'bold',
+    fontFamily: 'Lato-Bold',
     lineHeight: 22,
     fontSize: 16,
     color: 'rgba(31, 31, 31, 1)',
     marginTop: 12,
   },
   text2: {
-    fontWeight: 'bold',
+    fontFamily: 'Lato-Bold',
     lineHeight: 17,
     fontSize: 14,
     color: 'rgba(31, 31, 31, 1)',
@@ -58,8 +64,24 @@ const styles = StyleSheet.create({
   },
   ratingBlock: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   star: {
     marginRight: 5,
+  },
+  img: {
+    width: 202,
+    height: 168,
+  },
+  image: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  image1: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
 });

@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 
 export const CustomText = (props) => {
   const customFonts = {
     'Lato-Regular': require('../../assets/fonts/Lato-Regular.ttf'),
+    'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
+    'Lato-Black': require('../../assets/fonts/Lato-Black.ttf'),
   };
 
   const [isLoaded] = useFonts(customFonts);

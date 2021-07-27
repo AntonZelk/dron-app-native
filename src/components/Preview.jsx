@@ -27,9 +27,10 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingBottom: 20,
     marginTop: 32,
+    maxHeight: 164,
   },
   text: {
-    fontWeight: 'bold',
+    fontFamily: 'Lato-Bold',
     lineHeight: 17,
     fontSize: 14,
     color: '#fff',
@@ -37,14 +38,14 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
   name: {
-    fontWeight: 'bold',
+    fontFamily: 'Lato-Bold',
     lineHeight: 32,
     fontSize: 24,
     color: '#fff',
     zIndex: 99,
   },
   price: {
-    fontWeight: 'bold',
+    fontFamily: 'Lato-Bold',
     lineHeight: 24,
     fontSize: 20,
     color: '#fff',
@@ -53,6 +54,9 @@ const styles = StyleSheet.create({
   img: {
     position: 'absolute',
     right: 0,
+    top: 10,
     zIndex: 1,
+    width: 233,
+    height: 164,
   },
 });

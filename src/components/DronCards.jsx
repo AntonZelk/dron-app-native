@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StyleSheet, ScrollView, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-native';
@@ -11,6 +11,13 @@ export const DronCards = () => {
   const selectedDrons = useSelector((state) => state.drons.selectedDrons.drons);
   const isLoading = useSelector((state) => state.drons.isLoading);
   const isError = useSelector((state) => state.drons.isError);
+  const changeScroll = useRef(null);
+
+  useEffect(() => {
+    if (changeScroll && changeScroll.current) {
+      changeScroll.current.scrollTo({ y: 0, x: 0, animated: false });
+    }
+  }, [selectedDrons]);
 
   return (
     <View>
@@ -19,7 +26,12 @@ export const DronCards = () => {
       ) : isLoading ? (
         <Loader />
       ) : (
-        <ScrollView horizontal={true} style={styles.container}>
+        <ScrollView
+          horizontal={true}
+          style={styles.container}
+          showsHorizontalScrollIndicator={false}
+          ref={changeScroll}
+        >
           {selectedDrons.map((dron) => (
             <Link
               component={TouchableOpacity}

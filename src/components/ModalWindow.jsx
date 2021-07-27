@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   text: {
-    fontWeight: 'normal',
     lineHeight: 22,
     fontSize: 16,
     color: 'rgba(147, 147, 153, 1)',
@@ -79,7 +78,6 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   textBtn: {
-    fontWeight: 'normal',
     lineHeight: 22,
     fontSize: 16,
     color: '#fff',

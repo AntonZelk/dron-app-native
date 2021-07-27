@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   text: {
-    fontWeight: 'normal',
     lineHeight: 22,
     fontSize: 16,
     color: 'rgba(31, 31, 31, 1)',
