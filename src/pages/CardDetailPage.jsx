@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,10 +8,11 @@ import {
   ScrollView,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-native';
-import { TextInputMask } from 'react-native-masked-text';
 
-import { changeModal, setCurrentDron } from '../actions/dronsActions';
+import { TextInputMask } from 'react-native-masked-text';
+import { useNavigation } from '@react-navigation/native';
+
+import { changeModal } from '../actions/dronsActions';
 
 import Images from '../UI/Imajes';
 import Back from '../../assets/back1.svg';
@@ -21,32 +22,29 @@ import { ModalWindow } from '../components/ModalWindow';
 
 export const CardDetailPage = () => {
   const dispatch = useDispatch();
-  const params = useParams();
+  const navigation = useNavigation();
 
   const [maskedValue, setMaskedValue] = useState('');
   const [nameValue, setNamedValue] = useState('');
 
-  const drons = useSelector((state) => state.drons.drons);
   const currentDron = useSelector((state) => state.drons.currentDron);
   const openModal = useSelector((state) => state.drons.openModal);
-
-  const setCurrentItemHandler = useCallback(() => {
-    dispatch(setCurrentDron(drons, params.id));
-  }, [dispatch, params, drons]);
-
-  useEffect(() => {
-    setCurrentItemHandler();
-  }, [setCurrentItemHandler]);
 
   return (
     <View style={styles.wrapper}>
       {openModal ? <ModalWindow /> : null}
+
       <ScrollView style={styles.container}>
-        <View style={styles.back}>
-          <Link to={`/`} component={TouchableOpacity}>
-            <Back />
-          </Link>
-        </View>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => {
+            setNamedValue('');
+            setMaskedValue('');
+            navigation.goBack();
+          }}
+        >
+          <Back />
+        </TouchableOpacity>
 
         <View style={styles.img}>
           <Image
@@ -62,6 +60,7 @@ export const CardDetailPage = () => {
           placeholder="Имя"
           maxLength={20}
           style={styles.inputName}
+          value={nameValue}
           placeholderTextColor={'rgba(147, 147, 153, 1)'}
           onChangeText={(text) => {
             setNamedValue(text);
@@ -89,7 +88,9 @@ export const CardDetailPage = () => {
               ? styles.btnDis
               : styles.btn
           }
-          onPress={() => dispatch(changeModal(true))}
+          onPress={() => {
+            dispatch(changeModal(true));
+          }}
           disabled={
             maskedValue.length < 18 || nameValue.length < 1 ? true : false
           }
@@ -103,6 +104,7 @@ export const CardDetailPage = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    backgroundColor: 'blue',
   },
   container: {
     flex: 1,

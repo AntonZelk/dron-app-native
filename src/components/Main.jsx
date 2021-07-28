@@ -6,13 +6,13 @@ import { Preview } from '../components/Preview';
 import { CustomText } from '../UI/CustomText';
 import { DronCards } from './DronCards';
 
-export const Main = ({ navigation }) => {
+export const Main = () => {
   return (
     <View style={styles.container}>
       <Preview />
       <BtnBar />
       <CustomText style={styles.text}>All Quadcopters</CustomText>
-      <DronCards navigation={navigation} />
+      <DronCards />
     </View>
   );
 };

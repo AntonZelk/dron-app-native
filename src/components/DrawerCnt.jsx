@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
 
 import { HomeImg, FavImg, FindImg, CartImg } from '../UI/SvgImages';
 
-export const DrawerContent = (props) => {
+export const DrawerCnt = (props) => {
   return (
-    <View style={{ flex: 1 }}>
-      <DrawerContentScrollView {...props}>
+    <View style={styles.wrapper}>
+      <DrawerContentScrollView>
         <View style={styles.drawerContent}>
           <DrawerItem
             labelStyle={styles.label}
@@ -48,9 +48,10 @@ export const DrawerContent = (props) => {
 };
 
 const styles = StyleSheet.create({
+  wrapper: { flex: 1 },
   drawerContent: {
     flex: 1,
-    marginTop: 15,
+    paddingTop: 13,
   },
 
   label: {

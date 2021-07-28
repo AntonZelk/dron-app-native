@@ -4,12 +4,12 @@ import { View, ScrollView, StyleSheet } from 'react-native';
 import { Header } from '../components/Header';
 import { Main } from '../components/Main';
 
-export const HomePage = ({ navigation }) => {
+export const HomePage = () => {
   return (
     <View style={styles.wrapper}>
+      <Header />
       <ScrollView>
-        <Header navigation={navigation} />
-        <Main navigation={navigation} />
+        <Main />
       </ScrollView>
     </View>
   );

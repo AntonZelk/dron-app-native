@@ -5,9 +5,11 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { store } from './src/store/store';
 
-import { DrawerContent } from './src/components/DrawerContent';
+import { DrawerCnt } from './src/components/DrawerCnt';
 
 import { MainScreen } from './src/screens/MainScreen';
+
+import { CardDetailPage } from './src/pages/CardDetailPage';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,10 +18,9 @@ export default function App() {
     <Provider store={store}>
       <View style={styles.wrapper}>
         <NavigationContainer style={styles.wrapper}>
-          <Drawer.Navigator
-            drawerContent={(props) => <DrawerContent {...props} />}
-          >
+          <Drawer.Navigator drawerContent={(props) => <DrawerCnt {...props} />}>
             <Drawer.Screen name="HomeScr" component={MainScreen} />
+            <Drawer.Screen name="Detail" component={CardDetailPage} />
           </Drawer.Navigator>
         </NavigationContainer>
       </View>

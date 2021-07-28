@@ -1,13 +1,16 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+
 import { setCurrentDron } from '../actions/dronsActions';
 
 import { CustomText } from '../UI/CustomText';
 import Images from '../UI/Imajes';
 
-export const Card = ({ dron, navigation }) => {
+export const Card = ({ dron }) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const setCurrentItemHandler = () => {
     dispatch(setCurrentDron(dron));
@@ -18,6 +21,7 @@ export const Card = ({ dron, navigation }) => {
       style={styles.container}
       onPress={() => {
         setCurrentItemHandler();
+        navigation.navigate('Detail');
       }}
     >
       <View style={styles.img}>

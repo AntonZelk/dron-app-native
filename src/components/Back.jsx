@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { CustomText } from '../UI/CustomText';
 import BackImg from '../../assets/back1.svg';
 
-export const Back = ({ navigation }) => {
+export const Back = () => {
+  const navigation = useNavigation();
+
   return (
     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.back}>
       <BackImg />
@@ -14,12 +17,11 @@ export const Back = ({ navigation }) => {
 };
 const styles = StyleSheet.create({
   back: {
-    position: 'absolute',
     flexDirection: 'row',
     height: 50,
-    justifyContent: 'space-between',
+
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 10,
     marginLeft: 30,
   },
   text: {

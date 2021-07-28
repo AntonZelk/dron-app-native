@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { CustomText } from '../UI/CustomText';
 import Menu from '../../assets/menu1.svg';
 
-export const Header = ({ navigation }) => {
+export const Header = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <CustomText style={styles.text}>Quadrojoy</CustomText>

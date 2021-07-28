@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+
 import { StyleSheet, ScrollView, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -6,7 +7,7 @@ import { Card } from './Card';
 import Error from './Error';
 import Loader from './Loader';
 
-export const DronCards = ({ navigation }) => {
+export const DronCards = () => {
   const selectedDrons = useSelector((state) => state.drons.selectedDrons.drons);
   const isLoading = useSelector((state) => state.drons.isLoading);
   const isError = useSelector((state) => state.drons.isError);
@@ -32,7 +33,7 @@ export const DronCards = ({ navigation }) => {
           ref={changeScroll}
         >
           {selectedDrons.map((dron) => (
-            <Card dron={dron} key={dron.id} navigation={navigation} />
+            <Card dron={dron} key={dron.id} />
           ))}
         </ScrollView>
       )}
