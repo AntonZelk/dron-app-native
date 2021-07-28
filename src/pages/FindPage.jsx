@@ -1,17 +1,16 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Back } from '../components/Back';
 
-import { Footer } from '../components/Footer';
 import { CustomText } from '../UI/CustomText';
 
-export const FindPage = () => {
+export const FindPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <Back navigation={navigation} />
       <View style={styles.wrapper}>
         <CustomText style={styles.text}>Find Page</CustomText>
       </View>
-
-      <Footer />
     </View>
   );
 };

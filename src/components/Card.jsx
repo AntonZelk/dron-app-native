@@ -1,12 +1,25 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { setCurrentDron } from '../actions/dronsActions';
 
 import { CustomText } from '../UI/CustomText';
 import Images from '../UI/Imajes';
 
-export const Card = ({ dron }) => {
+export const Card = ({ dron, navigation }) => {
+  const dispatch = useDispatch();
+
+  const setCurrentItemHandler = () => {
+    dispatch(setCurrentDron(dron));
+  };
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        setCurrentItemHandler();
+      }}
+    >
       <View style={styles.img}>
         <Image
           source={Images.drons[dron.id - 1]}
@@ -24,7 +37,7 @@ export const Card = ({ dron }) => {
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

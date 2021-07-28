@@ -74,12 +74,10 @@ export const changeDrons = (payload, name) => {
   };
 };
 
-export const setCurrentDron = (drons, id) => {
-  const arr = drons.filter((dron) => dron.id === +id);
-
+export const setCurrentDron = (dron) => {
   return {
     type: SET_CURRENT_DRON,
-    payload: arr[0],
+    payload: dron,
   };
 };
 

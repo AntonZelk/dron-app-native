@@ -1,16 +1,20 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { CustomText } from '../UI/CustomText';
 import Menu from '../../assets/menu1.svg';
 
-export const Header = () => {
+export const Header = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <CustomText style={styles.text}>Quadrojoy</CustomText>
-      <View>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.toggleDrawer();
+        }}
+      >
         <Menu />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

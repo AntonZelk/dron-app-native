@@ -1,18 +1,16 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 
-import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Main } from '../components/Main';
 
-export const HomePage = () => {
+export const HomePage = ({ navigation }) => {
   return (
     <View style={styles.wrapper}>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-        <Header />
-        <Main />
+      <ScrollView>
+        <Header navigation={navigation} />
+        <Main navigation={navigation} />
       </ScrollView>
-      <Footer />
     </View>
   );
 };

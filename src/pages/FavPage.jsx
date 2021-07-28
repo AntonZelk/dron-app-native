@@ -1,17 +1,16 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { Footer } from '../components/Footer';
+import { Back } from '../components/Back';
 import { CustomText } from '../UI/CustomText';
 
-export const FavPage = () => {
+export const FavPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <Back navigation={navigation} />
       <View style={styles.wrapper}>
         <CustomText style={styles.text}>Favourite Page</CustomText>
       </View>
-
-      <Footer />
     </View>
   );
 };
