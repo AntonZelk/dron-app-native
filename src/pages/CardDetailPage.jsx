@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
@@ -12,34 +12,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TextInputMask } from 'react-native-masked-text';
 import { useNavigation } from '@react-navigation/native';
 
-import { changeModal } from '../actions/dronsActions';
-
 import Images from '../UI/Imajes';
 import Back from '../../assets/back1.svg';
 
 import { CustomText } from '../UI/CustomText';
 import { ModalWindow } from '../components/ModalWindow';
+import {
+  checkValidation,
+  clearValidation,
+  setFhoneNumber,
+  setNameText,
+} from '../actions/validationActions';
 
 export const CardDetailPage = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const [maskedValue, setMaskedValue] = useState('');
-  const [nameValue, setNamedValue] = useState('');
-
   const currentDron = useSelector((state) => state.drons.currentDron);
-  const openModal = useSelector((state) => state.drons.openModal);
+  const validation = useSelector((state) => state.validation);
 
   return (
     <View style={styles.wrapper}>
-      {openModal ? <ModalWindow /> : null}
-
+      {validation.isValidated ? <ModalWindow /> : null}
       <ScrollView style={styles.container}>
         <TouchableOpacity
           style={styles.back}
           onPress={() => {
-            setNamedValue('');
-            setMaskedValue('');
+            dispatch(clearValidation(validation));
             navigation.goBack();
           }}
         >
@@ -56,44 +55,49 @@ export const CardDetailPage = () => {
         <CustomText style={styles.name}>{currentDron.name}</CustomText>
         <CustomText style={styles.price}>{currentDron.price} $</CustomText>
         <CustomText style={styles.about}>{currentDron.text}</CustomText>
-        <TextInput
-          placeholder="Имя"
-          maxLength={20}
-          style={styles.inputName}
-          value={nameValue}
-          placeholderTextColor={'rgba(147, 147, 153, 1)'}
-          onChangeText={(text) => {
-            setNamedValue(text);
-          }}
-        />
-        <TextInputMask
-          type={'cel-phone'}
-          options={{
-            prefix: '+375',
-            maskType: 'BRL',
-            withDDD: true,
-            dddMask: '+375 (99)999-99-99 ',
-          }}
-          maxLength={18}
-          value={maskedValue}
-          placeholder={'+375 (__)___-__-__'}
-          style={styles.inputNum}
-          onChangeText={(text) => {
-            setMaskedValue(text);
-          }}
-        />
+        <View>
+          <TextInput
+            placeholder="Имя"
+            maxLength={20}
+            style={styles.inputName}
+            value={validation.name.text}
+            placeholderTextColor={'rgba(147, 147, 153, 1)'}
+            onChangeText={(text) => {
+              dispatch(setNameText(validation.name, text));
+            }}
+          />
+          {validation.name.showLabel ? (
+            <CustomText style={styles.label}>Введите имя.</CustomText>
+          ) : null}
+        </View>
+        <View>
+          <TextInputMask
+            type={'cel-phone'}
+            options={{
+              prefix: '+375',
+              maskType: 'BRL',
+              withDDD: true,
+              dddMask: '+375 (99)999-99-99 ',
+            }}
+            maxLength={18}
+            value={validation.phone.number}
+            placeholder={'+375 (__)___-__-__'}
+            style={styles.inputNum}
+            onChangeText={(phoneNumber) => {
+              dispatch(setFhoneNumber(validation.phone, phoneNumber));
+            }}
+          />
+          {validation.phone.showLabel ? (
+            <CustomText style={styles.label}>
+              Введите корректный номер телефона.
+            </CustomText>
+          ) : null}
+        </View>
         <TouchableOpacity
-          style={
-            maskedValue.length < 18 || nameValue.length < 1
-              ? styles.btnDis
-              : styles.btn
-          }
+          style={styles.btn}
           onPress={() => {
-            dispatch(changeModal(true));
+            dispatch(checkValidation(validation));
           }}
-          disabled={
-            maskedValue.length < 18 || nameValue.length < 1 ? true : false
-          }
         >
           <CustomText style={styles.textBtn}>Заказать</CustomText>
         </TouchableOpacity>
@@ -111,6 +115,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: '#fff',
     zIndex: 1,
+  },
+
+  label: {
+    fontSize: 16,
+    fontFamily: 'Lato-Regular',
+    position: 'absolute',
+    bottom: -20,
+    color: 'rgba(245, 39, 39, 1)',
   },
   back: {
     marginTop: 70,
@@ -184,16 +196,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     marginBottom: 40,
   },
-  btnDis: {
-    width: '100%',
-    backgroundColor: 'rgba(49, 122, 232, 0.2)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 46,
-    borderRadius: 8,
-    marginTop: 28,
-    marginBottom: 40,
-  },
+
   textBtn: {
     lineHeight: 22,
     fontSize: 16,

@@ -1,14 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { BlurView } from 'expo-blur';
 
-import { changeModal } from '../actions/dronsActions';
-
 import { CustomText } from '../UI/CustomText';
+import { clearValidation } from '../actions/validationActions';
 
 export const ModalWindow = () => {
   const dispatch = useDispatch();
+
+  const validation = useSelector((state) => state.validation);
 
   return (
     <View style={styles.wrapper}>
@@ -20,7 +21,7 @@ export const ModalWindow = () => {
         <CustomText style={styles.text}>Ваш заказ принят</CustomText>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => dispatch(changeModal(false))}
+          onPress={() => dispatch(clearValidation(validation))}
         >
           <CustomText style={styles.textBtn}>Ок</CustomText>
         </TouchableOpacity>

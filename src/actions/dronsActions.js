@@ -7,7 +7,6 @@ import {
   ADD_PREVIEW,
   CHANGE_DRONS,
   SET_CURRENT_DRON,
-  CHANGE_MODAL,
 } from './types';
 
 export const requestDrons = () => {
@@ -78,13 +77,6 @@ export const setCurrentDron = (dron) => {
   return {
     type: SET_CURRENT_DRON,
     payload: dron,
-  };
-};
-
-export const changeModal = (payload) => {
-  return {
-    type: CHANGE_MODAL,
-    payload,
   };
 };
 
