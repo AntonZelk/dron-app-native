@@ -5,6 +5,7 @@ import { BlurView } from 'expo-blur';
 
 import { CustomText } from '../UI/CustomText';
 import { clearValidation } from '../actions/validationActions';
+import { CarImg } from '../UI/SvgImages';
 
 export const ModalWindow = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const ModalWindow = () => {
 
       <View style={styles.back}></View>
       <View style={styles.modal}>
-        <Image source={require('../../assets/modal.png')} style={styles.img} />
+        <CarImg />
         <CustomText style={styles.text}>Ваш заказ принят</CustomText>
         <TouchableOpacity
           style={styles.btn}
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 16,
     zIndex: 9999,
+    paddingTop: 35,
   },
   img: {
     marginTop: 50,
@@ -66,7 +68,6 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     fontSize: 16,
     color: 'rgba(147, 147, 153, 1)',
-    marginTop: 15,
   },
   btn: {
     width: 146,

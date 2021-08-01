@@ -34,9 +34,9 @@ export const CardDetailPage = () => {
   return (
     <View style={styles.wrapper}>
       {validation.isValidated ? <ModalWindow /> : null}
-      <ScrollView style={styles.container}>
+      <View style={styles.back}>
         <TouchableOpacity
-          style={styles.back}
+          style={styles.backCont}
           onPress={() => {
             dispatch(clearValidation(validation));
             navigation.goBack();
@@ -44,7 +44,8 @@ export const CardDetailPage = () => {
         >
           <Back />
         </TouchableOpacity>
-
+      </View>
+      <ScrollView style={styles.container}>
         <View style={styles.img}>
           <Image
             source={Images.drons[currentDron.id - 1]}
@@ -108,7 +109,7 @@ export const CardDetailPage = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: 'blue',
+    backgroundColor: '#fff',
   },
   container: {
     flex: 1,
@@ -116,7 +117,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     zIndex: 1,
   },
-
+  backCont: {
+    width: 10,
+  },
   label: {
     fontSize: 16,
     fontFamily: 'Lato-Regular',
@@ -125,8 +128,8 @@ const styles = StyleSheet.create({
     color: 'rgba(245, 39, 39, 1)',
   },
   back: {
-    marginTop: 70,
-    marginLeft: 17,
+    marginTop: 50,
+    marginLeft: 33,
   },
   img: {
     flex: 1,

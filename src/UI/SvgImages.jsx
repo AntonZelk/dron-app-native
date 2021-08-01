@@ -9,6 +9,7 @@ import Find from '../../assets/find.svg';
 import FindActive from '../../assets/findActive.svg';
 import Cart from '../../assets/cart.svg';
 import CartActive from '../../assets/cartActive.svg';
+import ModalImg from '../../assets/modal.svg';
 
 export const FavImg = () => {
   return (
@@ -63,6 +64,13 @@ export const CartImgActive = () => {
   return (
     <View>
       <CartActive />
+    </View>
+  );
+};
+export const CarImg = () => {
+  return (
+    <View>
+      <ModalImg />
     </View>
   );
 };
